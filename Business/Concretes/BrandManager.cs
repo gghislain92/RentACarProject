@@ -22,7 +22,7 @@ namespace Business.Concretes
 
         public List<Brand> GetAll(){
 
-            return _brandDal.GetAll();
+            return _brandDal.GetList().ToList();
         }
     }
 }
