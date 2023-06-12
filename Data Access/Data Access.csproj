@@ -8,8 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Concretes\" />
     <Folder Include="Abstracts\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RentACarProject\Entities.csproj" />
   </ItemGroup>
 
 </Project>
