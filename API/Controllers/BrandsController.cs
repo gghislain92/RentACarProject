@@ -10,7 +10,8 @@ namespace API.Controllers
         [HttpGet]
 
         public IActionResult Get(){
-            BrandManager brandManager = new BrandManager();
+            
+            return Ok(brandManager.GetAll()); 
         }
     }
 }

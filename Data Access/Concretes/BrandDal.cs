@@ -1,4 +1,5 @@
-﻿using Entities.Concretes;
+﻿using Data_Access.Abstracts;
+using Entities.Concretes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Data_Access.Concretes
 {
-    public class BrandDal{
+    public class BrandDal: IBrandDal {
         public List<Brand> GetAll(){
             List<Brand> brands = new List<Brand>();
             brands.Add(new Brand { Id = 1, Name = "Nissan" });
