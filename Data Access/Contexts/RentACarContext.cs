@@ -15,5 +15,6 @@ namespace Data_Access.Contexts
         }
 
         public DbSet<Brand> Brands { get; set; }
+        public DbSet<Model> Models { get; set; }
     }
 }
