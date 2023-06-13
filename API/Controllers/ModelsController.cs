@@ -36,5 +36,19 @@ namespace API.Controllers
             _modelService.Add(model);
             return Ok(model);
         }
+
+        [HttpPost("{Delete}")]
+        public IActionResult Delete(DeleteModelRequest model)
+        {
+            _modelService.Detele(model);
+            return Ok(model);
+        }
+
+        [HttpPost("{Update}")]
+        public IActionResult Update(UpdateModelRequest model)
+        {
+            _modelService.Update(model);
+            return Ok(model);
+        }
     }
 }

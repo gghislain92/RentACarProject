@@ -18,11 +18,13 @@ namespace Business.Concretes
 
         private IModelDal _modelDal;
         ModelBusinessRules rules;
+        ModelBusinessRules1 rules1;
 
         public ModelManager(IModelDal modelDal)
         {
             _modelDal = modelDal;
             rules = new ModelBusinessRules(_modelDal);
+            rules1 = new ModelBusinessRules1(_modelDal);
         }
 
         public void Add(CreateModelRequest createModelRequest)
@@ -40,12 +42,9 @@ namespace Business.Concretes
 
         public void Detele(DeleteModelRequest deleteModelRequest)
         {
-            Model model = _modelDal.Get(m => m.Id == deleteModelRequest.Id);
+            rules1.ModelIdCanNotBeFound(deleteModelRequest.Id);
 
-            if (model == null)
-            {
-                throw new ArgumentException($"No model found with the id {deleteModelRequest.Id}");
-            }
+            Model model = _modelDal.Get(m => m.Id == deleteModelRequest.Id);
 
             _modelDal.Delete(model);
         }
@@ -60,14 +59,16 @@ namespace Business.Concretes
             return _modelDal.GetList(m => m.Name.Contains(modelName)).ToList();
         }
 
+        public List<Model> GetAll(int modelId)
+        {
+            return _modelDal.GetList(m => m.Id.ToString().Contains(modelId.ToString())).ToList();
+        }
+
         public void Update(UpdateModelRequest updateModelRequest)
         {
             Model model = _modelDal.Get(m => m.Id == (int)updateModelRequest.Id);
 
-            if (model == null)
-            {
-                throw new ArgumentException($"No model found with the id {updateModelRequest.Id}");
-            }
+            rules.ModelNameCanNotBeDuplicated(updateModelRequest.Name);
 
             model.Name = updateModelRequest.Name;
             model.DailyPrice = updateModelRequest.dailyPrice;

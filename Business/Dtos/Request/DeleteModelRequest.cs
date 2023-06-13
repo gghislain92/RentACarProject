@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Business.Dtos.Request
 {
-    internal class DeleteModelRequest
+    public class DeleteModelRequest
     {
+        public int Id { get; set; }
     }
 }

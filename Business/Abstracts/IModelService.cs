@@ -14,6 +14,8 @@ namespace Business.Abstracts
 
         List<Model> GetAll(string modelName);
 
+        List<Model> GetAll(int modelId);
+
         void Add(CreateModelRequest createModelRequest);
 
         void Detele(DeleteModelRequest deleteModelRequest);
