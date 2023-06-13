@@ -8,7 +8,6 @@ namespace Business.Dtos.Request
 {
     public class UpdateModelRequest
     {
-        public int Id { get; set; } 
         public string Name { get; set; }
         public double dailyPrice { get; set; }
     }

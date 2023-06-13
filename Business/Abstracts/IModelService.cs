@@ -1,4 +1,5 @@
 ﻿using Business.Dtos.Request;
+using Business.Dtos.Response;
 using Entities.Concretes;
 using System;
 using System.Collections.Generic;
@@ -10,11 +11,9 @@ namespace Business.Abstracts
 {
     public interface IModelService{
         
-        List<Model> GetAll();
+        List<GetModelResponse> GetAll();
 
-        List<Model> GetAll(string modelName);
-
-        List<Model> GetAll(int modelId);
+        List<GetModelResponse> GetAll(string modelName);
 
         void Add(CreateModelRequest createModelRequest);
 

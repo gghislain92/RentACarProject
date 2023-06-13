@@ -19,14 +19,15 @@ namespace Business.Rules
         }
 
 
-        public void ModelIdCanNotBeFound(int modelId)
+        public void ModelIdCanNotBeFound(string modelName)
         {
-            Model? model = _modelDal.Get(m => m.Id == modelId);
+            Model? model = _modelDal.Get(n => n.Name == modelName);
 
             if (model == null)
             {
-                throw new ArgumentException("No model found with the id");
+                throw new ArgumentException("No model found with the Name!");
             }
         }
+
     }
 }

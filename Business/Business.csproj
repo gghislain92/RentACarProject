@@ -11,8 +11,4 @@
     <ProjectReference Include="..\RentACarProject\Entities.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Dtos\Response\" />
-  </ItemGroup>
-
 </Project>

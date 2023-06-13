@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.Dtos.Request
+namespace Business.Dtos.Response
 {
-    public class DeleteModelRequest
+    internal class GetModelResponse
     {
-        public string Name { get; set; }
     }
 }

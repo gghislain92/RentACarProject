@@ -1,5 +1,6 @@
 ﻿using Business.Abstracts;
 using Business.Dtos.Request;
+using Business.Dtos.Response;
 using Business.Rules;
 using Data_Access.Abstracts;
 using Data_Access.Concretes;
@@ -42,31 +43,56 @@ namespace Business.Concretes
 
         public void Detele(DeleteModelRequest deleteModelRequest)
         {
-            rules1.ModelIdCanNotBeFound(deleteModelRequest.Id);
+            rules1.ModelIdCanNotBeFound(deleteModelRequest.Name);
 
-            Model model = _modelDal.Get(m => m.Id == deleteModelRequest.Id);
+            Model model = _modelDal.Get(n => n.Name == deleteModelRequest.Name);
 
             _modelDal.Delete(model);
         }
 
-        public List<Model> GetAll()
+        public List<GetModelResponse> GetAll()
         {
-            return _modelDal.GetList().ToList();
+            List<Model> model = _modelDal.GetList().ToList();
+            List<GetModelResponse> getModelResponses = new List<GetModelResponse>();
+            foreach (Model model in models)
+            {
+                GetModelResponse modelResponse = new GetModelResponse();
+                getModelResponses.Name = model.Name;
+                getModelResponses.DailyPrice = model.DailyPrice;
+                getModelResponses.Id = model.Id;
+                getModelResponses.BrandId = model.BrandId;
+                getModelResponses.BrandName = model.BrandName;
+
+                getModelResponses.Add(getModelResponses);
+
+            }
+
+            return getModelResponses;
         }
 
-        public List<Model> GetAll(string modelName)
+        public List<GetModelResponse> GetAll(string modelName)
         {
-            return _modelDal.GetList(m => m.Name.Contains(modelName)).ToList();
-        }
+            List<Model> model = _modelDal.GetList(m=>m.Name.ToLower().Contains(modelName.ToLower)).ToList();
+            List<GetModelResponse> getModelResponses = new List<GetModelResponse>();
+            foreach (Model model in models)
+            {
+                GetModelResponse modelResponse = new GetModelResponse();
+                getModelResponses.Name = model.Name;
+                getModelResponses.DailyPrice = model.DailyPrice;
+                getModelResponses.Id = model.Id;
+                getModelResponses.BrandId = model.BrandId;
+                getModelResponses.BrandName = model.BrandName;
 
-        public List<Model> GetAll(int modelId)
-        {
-            return _modelDal.GetList(m => m.Id.ToString().Contains(modelId.ToString())).ToList();
+                getModelResponses.Add(getModelResponses);
+
+            }
+
+            return getModelResponses;
         }
 
         public void Update(UpdateModelRequest updateModelRequest)
         {
-            Model model = _modelDal.Get(m => m.Id == (int)updateModelRequest.Id);
+            Model model = _modelDal.Get(m => m.Name == updateModelRequest.Name);
 
             rules.ModelNameCanNotBeDuplicated(updateModelRequest.Name);
 
