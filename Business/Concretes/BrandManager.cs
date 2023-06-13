@@ -24,5 +24,10 @@ namespace Business.Concretes
 
             return _brandDal.GetList().ToList();
         }
+
+        public List<Brand> GetAll(string brandName)
+        {
+            return _brandDal.GetList(b=>b.Name.Contains(brandName)).ToList();
+        }
     }
 }

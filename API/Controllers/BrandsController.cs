@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/")]
     [ApiController]
     public class BrandsController : ControllerBase{
         IBrandService _brandService;
@@ -20,6 +20,13 @@ namespace API.Controllers
         public IActionResult Get(){
             
             return Ok(_brandService.GetAll()); 
+        }
+
+        [HttpGet("{brandName}")]
+        public IActionResult Get([FromRoute]string brandName)
+        {
+
+            return Ok(_brandService.GetAll(brandName));
         }
     }
 }
