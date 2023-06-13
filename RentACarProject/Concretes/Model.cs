@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 
 namespace Entities.Concretes
 {
-    public class Brand : IEntity {
+    public class Model : IEntity
+    {
         public int Id { get; set; }
         public string Name { get; set; }
-        
-        public List<Model> Models { get; set; }
+        public double DailyPrice { get; set; }
+
+        public Brand Brand { get; set; }
     }
 }
