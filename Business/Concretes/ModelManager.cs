@@ -42,23 +42,24 @@ namespace Business.Concretes
         }
         public Model GetById(int modelId)
         {
-            return _modelDal.Get(m=>m.Id == modelId);
+            return _modelDal.Get(m => m.Id == modelId);
         }
-        public List<Model> GetAll(){
+        public List<Model> GetAll()
+        {
 
             return _modelDal.GetList().ToList();
         }
 
         public List<Model> GetAll(string modelName)
         {
-            return _modelDal.GetList(m=>m.Name.Contains(modelName)).ToList();
+            return _modelDal.GetList(m => m.Name.Contains(modelName)).ToList();
         }
 
         public void update(UpdateModelRequest updateModelRequest)
         {
             rules.ModelNameCanNotBeDuplicated(updateModelRequest.Name);
 
-            Model model = _modelDal.Get(m=>m.Id == updateModelRequest.BrandId);
+            Model model = _modelDal.Get(m => m.Id == updateModelRequest.BrandId);
             if (model != null)
             {
                 model.Name = updateModelRequest.Name;
@@ -69,7 +70,7 @@ namespace Business.Concretes
         }
         public void delete(DeleteModelRequest deleteModelRequest)
         {
-            Model model = _modelDal.Get(m=>m.Id==deleteModelRequest.BrandId);
+            Model model = _modelDal.Get(m => m.Id == deleteModelRequest.BrandId);
             _modelDal.Delete(model);
         }
     }
