@@ -9,7 +9,5 @@ namespace Business.Abstracts
 {
     public interface IBrandService{
         List<Brand> GetAll();
-
-        List<Brand> GetAll(string brandName);
     }
 }

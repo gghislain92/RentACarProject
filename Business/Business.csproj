@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Dtos\Request\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Data Access\Data Access.csproj" />
     <ProjectReference Include="..\RentACarProject\Entities.csproj" />
   </ItemGroup>
