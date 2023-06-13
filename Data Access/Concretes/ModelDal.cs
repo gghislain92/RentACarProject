@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Data_Access.Concretes
 {
-    public class ModelDal : EfEntityRepositoryBase<Model, RentACarContext>, IModelDal
-    {
+    public class ModelDal : EfEntityRepositoryBase<Model, RentACarContext>, IModelDal{
+
     }
 }
