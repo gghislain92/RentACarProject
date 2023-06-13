@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 namespace Business.Abstracts
 {
     public interface IModelService{
+        
         List<Model> GetAll();
 
         List<Model> GetAll(string modelName);
