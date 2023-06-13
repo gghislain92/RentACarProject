@@ -1,4 +1,4 @@
-﻿using Data_Access.Abstracts;
+using Data_Access.Abstracts;
 using Data_Access.Contexts;
 using Data_Access.Repository;
 using Entities.Concretes;
@@ -10,7 +10,10 @@ using System.Threading.Tasks;
 
 namespace Data_Access.Concretes
 {
-    public class BrandDal: EfEntityRepositoryBase<Brand, RentACarContext>, IBrandDal {
-        
+    public class BrandDal{
+        public List<Brand> GetAll()
+        {
+
+        }
     }
 }

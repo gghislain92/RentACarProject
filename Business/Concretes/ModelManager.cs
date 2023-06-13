@@ -1,9 +1,9 @@
 ﻿using Business.Abstracts;
 using Business.Dtos.Request;
-using Business.Dtos.Response;
+using Business.Dtos.Responses;
 using Business.Rules;
-using Data_Access.Abstracts;
-using Data_Access.Concretes;
+using DataAccess.Abstracts;
+using DataAccess.Concretes;
 using Entities.Concretes;
 using System;
 using System.Collections.Generic;
@@ -42,7 +42,6 @@ namespace Business.Concretes
             Model model = new Model
             {
                 Name = createModelRequest.Name,
-                DailyPrice = createModelRequest.dailyPrice,
                 BrandId = createModelRequest.BrandId
             };
             _modelDal.Add(model);
@@ -64,7 +63,6 @@ namespace Business.Concretes
             {
                 GetModelResponse getModelResponse = new GetModelResponse();
                 getModelResponse.Name = model.Name;
-                getModelResponse.dailyPrice = model.DailyPrice;
                 getModelResponse.Id = model.Id;
                 getModelResponse.BrandId = model.BrandId;
                 getModelResponse.BrandName = model.Brand.Name;
@@ -81,13 +79,11 @@ namespace Business.Concretes
             List<Model> models =
                 _modelDal.GetAllWithBrand(modelName).ToList();
 
-            List<GetModelResponsed> getModelResponses = new List<GetModelResponse>();
 
             foreach (Model model in models)
             {
                 GetModelResponse getModelResponse = new GetModelResponse();
                 getModelResponse.Name = model.Name;
-                getModelResponse.dailyPrice = model.DailyPrice;
                 getModelResponse.Id = model.Id;
                 getModelResponse.BrandId = model.BrandId;
                 getModelResponse.BrandName = model.Brand.Name;
