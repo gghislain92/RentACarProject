@@ -40,7 +40,10 @@ namespace Business.Concretes
             };
             _modelDal.Add(model);
         }
-
+        public Model GetById(int modelId)
+        {
+            return _modelDal.Get(m=>m.Id == modelId);
+        }
         public List<Model> GetAll(){
 
             return _modelDal.GetList().ToList();
@@ -49,6 +52,25 @@ namespace Business.Concretes
         public List<Model> GetAll(string modelName)
         {
             return _modelDal.GetList(m=>m.Name.Contains(modelName)).ToList();
+        }
+
+        public void update(UpdateModelRequest updateModelRequest)
+        {
+            rules.ModelNameCanNotBeDuplicated(updateModelRequest.Name);
+
+            Model model = _modelDal.Get(m=>m.Id == updateModelRequest.BrandId);
+            if (model != null)
+            {
+                model.Name = updateModelRequest.Name;
+                model.DailyPrice = updateModelRequest.dailyPrice;
+                model.BrandId = updateModelRequest.BrandId;
+                _modelDal.Update(model);
+            }
+        }
+        public void delete(DeleteModelRequest deleteModelRequest)
+        {
+            Model model = _modelDal.Get(m=>m.Id==deleteModelRequest.BrandId);
+            _modelDal.Delete(model);
         }
     }
 }

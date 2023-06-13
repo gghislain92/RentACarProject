@@ -1,5 +1,6 @@
 ﻿using Business.Dtos.Request;
 using Entities.Concretes;
+using Microsoft.EntityFrameworkCore.Update.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,10 @@ namespace Business.Abstracts
         List<Model> GetAll();
 
         List<Model> GetAll(string modelName);
+        Model GetById(int id);
 
         void Add(CreateModelRequest createModelRequest);
+        void update(UpdateModelRequest updateModelRequest);
+        void delete(DeleteModelRequest deleteModelRequest);
     }
 }

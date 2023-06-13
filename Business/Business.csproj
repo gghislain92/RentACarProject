@@ -7,12 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Data Access\Data Access.csproj" />
-    <ProjectReference Include="..\RentACarProject\Entities.csproj" />
+    <Compile Remove="Dtos\Response\**" />
+    <EmbeddedResource Remove="Dtos\Response\**" />
+    <None Remove="Dtos\Response\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Dtos\Response\" />
+    <ProjectReference Include="..\Data Access\Data Access.csproj" />
+    <ProjectReference Include="..\RentACarProject\Entities.csproj" />
   </ItemGroup>
 
 </Project>
