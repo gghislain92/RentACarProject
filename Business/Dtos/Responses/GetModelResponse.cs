@@ -1,19 +1,17 @@
-using Entities.Abstracts;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities.Concretes
+namespace Business.Dtos.Responses
 {
-    public class Model : IEntity
+    public class GetModelResponse
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public double DailyPrice { get; set; }
+        public double dailyPrice { get; set; }
         public int BrandId { get; set; }
-
-        public Brand Brand { get; set; }
+        public string BrandName { get; set; }
     }
 }
