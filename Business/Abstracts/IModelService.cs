@@ -10,7 +10,8 @@ using System.Threading.Tasks;
 
 namespace Business.Abstracts
 {
-    public interface IModelService{
+    public interface IModelService
+    {
 
         List<GetModelResponse> GetAll();
         List<GetModelResponse> GetAll(string modelName);

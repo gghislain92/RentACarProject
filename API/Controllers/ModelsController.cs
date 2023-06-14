@@ -9,7 +9,8 @@ namespace API.Controllers
 {
     [Route("api/[controller]/")]
     [ApiController]
-    public class ModelsController : ControllerBase{
+    public class ModelsController : ControllerBase
+    {
         IModelService _modelService;
 
         public ModelsController(IModelService modelService)
@@ -19,19 +20,21 @@ namespace API.Controllers
 
         [HttpGet]
 
-        public IActionResult Get(){
-            
-            return Ok(_modelService.GetAll()); 
+        public IActionResult Get()
+        {
+
+            return Ok(_modelService.GetAll());
         }
 
         [HttpGet("{modelName}")]
-        public IActionResult Get([FromRoute]string modelName)
+        public IActionResult Get([FromRoute] string modelName)
         {
 
             return Ok(_modelService.GetAll(modelName));
         }
         [HttpGet("{id:int}")]
-        public IActionResult GetById(int id) { 
+        public IActionResult GetById(int id)
+        {
 
             return Ok(_modelService.GetById(id));
         }
