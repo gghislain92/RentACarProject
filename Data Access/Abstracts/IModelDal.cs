@@ -10,5 +10,7 @@ namespace Data_Access.Abstracts
 {
     public interface IModelDal : IEntityRepository<Model>
     {
+        List<Model> GetAllWithBrand();
+        List<Model> GetAllWithBrand(string modelName);
     }
 }

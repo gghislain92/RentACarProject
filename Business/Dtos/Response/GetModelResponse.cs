@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace Business.Dtos.Response
 {
-    internal class GetModelResponse
+    public class GetModelResponse
     {
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+        
+        public double dailyPrice { get; set; }
+        
+        public int BrandId { get; set; }
+        
+        public string BrandName { get; set; }
     }
 }

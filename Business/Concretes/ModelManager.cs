@@ -19,87 +19,69 @@ namespace Business.Concretes
 
         private IModelDal _modelDal;
         ModelBusinessRules rules;
-        ModelBusinessRules1 rules1;
-
         public ModelManager(IModelDal modelDal)
         {
             _modelDal = modelDal;
             rules = new ModelBusinessRules(_modelDal);
-            rules1 = new ModelBusinessRules1(_modelDal);
         }
 
         public void Add(CreateModelRequest createModelRequest)
         {
+
             rules.ModelNameCanNotBeDuplicated(createModelRequest.Name);
 
             Model model = new Model
             {
                 Name = createModelRequest.Name,
-                DailyPrice = createModelRequest.dailyPrice,
+                dailyPrice = createModelRequest.dailyPrice,
                 BrandId = createModelRequest.BrandId
             };
             _modelDal.Add(model);
-        }
 
-        public void Detele(DeleteModelRequest deleteModelRequest)
-        {
-            rules1.ModelIdCanNotBeFound(deleteModelRequest.Name);
-
-            Model model = _modelDal.Get(n => n.Name == deleteModelRequest.Name);
-
-            _modelDal.Delete(model);
         }
 
         public List<GetModelResponse> GetAll()
         {
-            List<Model> model = _modelDal.GetList().ToList();
+
+            List<Model> models = _modelDal.GetAllWithBrand().ToList();
+
             List<GetModelResponse> getModelResponses = new List<GetModelResponse>();
+
             foreach (Model model in models)
             {
-                GetModelResponse modelResponse = new GetModelResponse();
-                getModelResponses.Name = model.Name;
-                getModelResponses.DailyPrice = model.DailyPrice;
-                getModelResponses.Id = model.Id;
-                getModelResponses.BrandId = model.BrandId;
-                getModelResponses.BrandName = model.BrandName;
+                GetModelResponse getModelResponse = new GetModelResponse();
+                getModelResponse.Name = model.Name;
+                getModelResponse.dailyPrice = model.dailyPrice;
+                getModelResponse.Id = model.Id;
+                getModelResponse.BrandId = model.BrandId;
+                getModelResponse.BrandName = model.Brand.Name;
 
-                getModelResponses.Add(getModelResponses);
-
+                getModelResponses.Add(getModelResponse);
             }
 
             return getModelResponses;
+
         }
 
         public List<GetModelResponse> GetAll(string modelName)
         {
-            List<Model> model = _modelDal.GetList(m=>m.Name.ToLower().Contains(modelName.ToLower)).ToList();
+            List<Model> models = _modelDal.GetAllWithBrand(modelName).ToList();
+
             List<GetModelResponse> getModelResponses = new List<GetModelResponse>();
+
             foreach (Model model in models)
             {
-                GetModelResponse modelResponse = new GetModelResponse();
-                getModelResponses.Name = model.Name;
-                getModelResponses.DailyPrice = model.DailyPrice;
-                getModelResponses.Id = model.Id;
-                getModelResponses.BrandId = model.BrandId;
-                getModelResponses.BrandName = model.BrandName;
+                GetModelResponse getModelResponse = new GetModelResponse();
+                getModelResponse.Name = model.Name;
+                getModelResponse.dailyPrice = model.dailyPrice;
+                getModelResponse.Id = model.Id;
+                getModelResponse.BrandId = model.BrandId;
+                getModelResponse.BrandName = model.Brand.Name;
 
-                getModelResponses.Add(getModelResponses);
-
+                getModelResponses.Add(getModelResponse);
             }
 
             return getModelResponses;
-        }
-
-        public void Update(UpdateModelRequest updateModelRequest)
-        {
-            Model model = _modelDal.Get(m => m.Name == updateModelRequest.Name);
-
-            rules.ModelNameCanNotBeDuplicated(updateModelRequest.Name);
-
-            model.Name = updateModelRequest.Name;
-            model.DailyPrice = updateModelRequest.dailyPrice;
-
-            _modelDal.Update(model);
         }
     }
 }

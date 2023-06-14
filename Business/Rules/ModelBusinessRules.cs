@@ -19,6 +19,7 @@ namespace Business.Rules
         }
 
 
+        //product names can not be duplicated
         public void ModelNameCanNotBeDuplicated(string modelName)
         {
             Model? model = _modelDal.Get(m => m.Name == modelName);
