@@ -9,5 +9,8 @@ namespace Business.Dtos.Request
     public class DeleteModelRequest
     {
         public string Name { get; set; }
+        public double dailyPrice { get; set; }
+
+        public int BrandId { get; set; }
     }
 }

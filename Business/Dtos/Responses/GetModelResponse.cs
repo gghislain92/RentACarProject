@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.Dtos.Request
+namespace Business.Dtos.Responses
 {
-    public class UpdateModelRequest
+    public class GetModelResponse
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public double dailyPrice { get; set; }
-
         public int BrandId { get; set; }
+        public string BrandName { get; set; }
     }
 }

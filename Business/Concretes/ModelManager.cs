@@ -40,7 +40,10 @@ namespace Business.Concretes
             };
             _modelDal.Add(model);
         }
-
+        public Model GetById(int modelId)
+        {
+            return _modelDal.Get(m => m.Id == modelId);
+        }
         public void Detele(DeleteModelRequest deleteModelRequest)
         {
             rules1.ModelIdCanNotBeFound(deleteModelRequest.Name);
@@ -51,6 +54,7 @@ namespace Business.Concretes
         }
 
         public List<GetModelResponse> GetAll()
+        
         {
             List<Model> model = _modelDal.GetList().ToList();
             List<GetModelResponse> getModelResponses = new List<GetModelResponse>();
@@ -92,14 +96,26 @@ namespace Business.Concretes
 
         public void Update(UpdateModelRequest updateModelRequest)
         {
-            Model model = _modelDal.Get(m => m.Name == updateModelRequest.Name);
+            return _modelDal.GetList(m => m.Name.Contains(modelName)).ToList();
+        }
 
+        public void update(UpdateModelRequest updateModelRequest)
+        {
             rules.ModelNameCanNotBeDuplicated(updateModelRequest.Name);
 
-            model.Name = updateModelRequest.Name;
-            model.DailyPrice = updateModelRequest.dailyPrice;
-
-            _modelDal.Update(model);
+            Model model = _modelDal.Get(m => m.Id == updateModelRequest.BrandId);
+            if (model != null)
+            {
+                model.Name = updateModelRequest.Name;
+                model.DailyPrice = updateModelRequest.dailyPrice;
+                model.BrandId = updateModelRequest.BrandId;
+                _modelDal.Update(model);
+            }
+        }
+        public void delete(DeleteModelRequest deleteModelRequest)
+        {
+            Model model = _modelDal.Get(m => m.Id == deleteModelRequest.BrandId);
+            _modelDal.Delete(model);
         }
     }
 }
