@@ -29,5 +29,15 @@ namespace Business.Rules
                 throw new Exception("Model name already exists");
             }
         }
+
+        public void ModelIdCanNotBeFound(string modelName)
+        {
+            Model? model = _modelDal.Get(m => m.Name == modelName);
+
+            if (model != null)
+            {
+                throw new Exception("Model name not found.");
+            }
+        }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Business.Abstracts;
 using Business.Dtos.Request;
-using Business.Dtos.Response;
+using Business.Dtos.Responses;
 using Business.Rules;
 using Data_Access.Abstracts;
 using Data_Access.Concretes;
@@ -44,7 +44,7 @@ namespace Business.Concretes
         }
         public void Detele(DeleteModelRequest deleteModelRequest)
         {
-            rules1.ModelIdCanNotBeFound(deleteModelRequest.Name);
+            rules.ModelIdCanNotBeFound(deleteModelRequest.Name);
 
             Model model = _modelDal.Get(n => n.Name == deleteModelRequest.Name);
 
@@ -96,12 +96,12 @@ namespace Business.Concretes
             return getModelResponses;
         }
 
-        public void Update(UpdateModelRequest updateModelRequest)
+        public List<Model> Update(UpdateModelRequest updateModelRequest, char modelName)
         {
             return _modelDal.GetList(m => m.Name.Contains(modelName)).ToList();
         }
 
-        public void update(UpdateModelRequest updateModelRequest)
+        public void Update(UpdateModelRequest updateModelRequest)
         {
             rules.ModelNameCanNotBeDuplicated(updateModelRequest.Name);
 
@@ -109,15 +109,16 @@ namespace Business.Concretes
             if (model != null)
             {
                 model.Name = updateModelRequest.Name;
-                model.DailyPrice = updateModelRequest.dailyPrice;
+                model.dailyPrice = updateModelRequest.dailyPrice;
                 model.BrandId = updateModelRequest.BrandId;
                 _modelDal.Update(model);
             }
         }
-        public void delete(DeleteModelRequest deleteModelRequest)
+        public void Delete(DeleteModelRequest deleteModelRequest)
         {
             Model model = _modelDal.Get(m => m.Id == deleteModelRequest.BrandId);
             _modelDal.Delete(model);
         }
+
     }
 }
