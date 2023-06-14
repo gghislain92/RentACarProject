@@ -19,13 +19,12 @@ namespace Business.Concretes
 
         private IModelDal _modelDal;
         ModelBusinessRules rules;
-        ModelBusinessRules1 rules1;
 
         public ModelManager(IModelDal modelDal)
         {
             _modelDal = modelDal;
             rules = new ModelBusinessRules(_modelDal);
-            rules1 = new ModelBusinessRules1(_modelDal);
+ 
         }
 
         public void Add(CreateModelRequest createModelRequest)
@@ -96,7 +95,7 @@ namespace Business.Concretes
         {
             rules.ModelNameCanNotBeDuplicated(updateModelRequest.Name);
 
-            Model model = _modelDal.Get(m => m.Id == updateModelRequest.BrandId);
+            Model model = _modelDal.Get(m => m.Id == updateModelRequest.id);
             if (model != null)
             {
                 model.Name = updateModelRequest.Name;
@@ -107,7 +106,7 @@ namespace Business.Concretes
         }
         public void delete(DeleteModelRequest deleteModelRequest)
         {
-            Model model = _modelDal.Get(m => m.Id == deleteModelRequest.BrandId);
+            Model model = _modelDal.Get(m => m.Id == deleteModelRequest.id);
             _modelDal.Delete(model);
         }
     }
