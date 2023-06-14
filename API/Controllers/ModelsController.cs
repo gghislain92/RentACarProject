@@ -54,18 +54,5 @@ namespace API.Controllers
             return Ok();
         }
 
-        [HttpPost("{Delete}")]
-        public IActionResult Delete(DeleteModelRequest model)
-        {
-            _modelService.Detele(model);
-            return Ok(model);
-        }
-
-        [HttpPost("{Update}")]
-        public IActionResult Update(UpdateModelRequest model)
-        {
-            _modelService.Update(model);
-            return Ok(model);
-        }
     }
 }

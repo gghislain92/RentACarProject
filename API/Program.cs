@@ -2,6 +2,7 @@ using Business.Abstracts;
 using Business.Concretes;
 using Data_Access.Abstracts;
 using Data_Access.Concretes;
+using DataAccess.Concretes;
 
 var builder = WebApplication.CreateBuilder(args);
 
