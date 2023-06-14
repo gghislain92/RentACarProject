@@ -30,11 +30,41 @@ namespace API.Controllers
         {
             return Ok(_modelService.GetAll(modelName));
         }
+        [HttpGet("{id:int}")]
+        public IActionResult GetById(int id) { 
 
+            return Ok(_modelService.GetById(id));
+        }
         [HttpPost]
         public IActionResult Add(CreateModelRequest model)
         {
             _modelService.Add(model);
+            return Ok(model);
+        }
+        [HttpPost("Update")]
+        public IActionResult Update(UpdateModelRequest model)
+        {
+            _modelService.update(model);
+            return Ok(model);
+        }
+        [HttpDelete]
+        public IActionResult Delete(DeleteModelRequest model)
+        {
+            _modelService.delete(model);
+            return Ok();
+        }
+
+        [HttpPost("{Delete}")]
+        public IActionResult Delete(DeleteModelRequest model)
+        {
+            _modelService.Detele(model);
+            return Ok(model);
+        }
+
+        [HttpPost("{Update}")]
+        public IActionResult Update(UpdateModelRequest model)
+        {
+            _modelService.Update(model);
             return Ok(model);
         }
     }
