@@ -1,4 +1,4 @@
-﻿using Business.Abstracts;
+using Business.Abstracts;
 using Business.Dtos.Request;
 using Business.Dtos.Responses;
 using Business.Rules;
@@ -19,15 +19,17 @@ namespace Business.Concretes
 
         private IModelDal _modelDal;
         ModelBusinessRules rules;
+        ModelBusinessRules1 rules1;
+
         public ModelManager(IModelDal modelDal)
         {
             _modelDal = modelDal;
             rules = new ModelBusinessRules(_modelDal);
+            rules1 = new ModelBusinessRules1(_modelDal);
         }
 
         public void Add(CreateModelRequest createModelRequest)
         {
-
             rules.ModelNameCanNotBeDuplicated(createModelRequest.Name);
 
             Model model = new Model
@@ -42,19 +44,11 @@ namespace Business.Concretes
         {
             return _modelDal.Get(m => m.Id == modelId);
         }
-        public void Detele(DeleteModelRequest deleteModelRequest)
-        {
-            rules.ModelIdCanNotBeFound(deleteModelRequest.Name);
-
-            Model model = _modelDal.Get(n => n.Name == deleteModelRequest.Name);
-
-            _modelDal.Delete(model);
-        }
 
         public List<GetModelResponse> GetAll()
-        
         {
 
+            //business rules
             List<Model> models = _modelDal.GetAllWithBrand().ToList();
 
             List<GetModelResponse> getModelResponses = new List<GetModelResponse>();
@@ -77,7 +71,8 @@ namespace Business.Concretes
 
         public List<GetModelResponse> GetAll(string modelName)
         {
-            List<Model> models = _modelDal.GetAllWithBrand(modelName).ToList();
+            List<Model> models =
+                _modelDal.GetAllWithBrand(modelName).ToList();
 
             List<GetModelResponse> getModelResponses = new List<GetModelResponse>();
 
@@ -96,12 +91,8 @@ namespace Business.Concretes
             return getModelResponses;
         }
 
-        public List<Model> Update(UpdateModelRequest updateModelRequest, char modelName)
-        {
-            return _modelDal.GetList(m => m.Name.Contains(modelName)).ToList();
-        }
 
-        public void Update(UpdateModelRequest updateModelRequest)
+        public void update(UpdateModelRequest updateModelRequest)
         {
             rules.ModelNameCanNotBeDuplicated(updateModelRequest.Name);
 
@@ -114,11 +105,10 @@ namespace Business.Concretes
                 _modelDal.Update(model);
             }
         }
-        public void Delete(DeleteModelRequest deleteModelRequest)
+        public void delete(DeleteModelRequest deleteModelRequest)
         {
             Model model = _modelDal.Get(m => m.Id == deleteModelRequest.BrandId);
             _modelDal.Delete(model);
         }
-
     }
 }
