@@ -50,6 +50,13 @@ namespace API.Controllers
             _modelService.update(model);
             return Ok(model);
         }
+        [HttpDelete]
+        public IActionResult Delete(DeleteModelRequest model)
+        {
+            _modelService.delete(model);
+            return Ok();
+        }
+
 
 
     }
