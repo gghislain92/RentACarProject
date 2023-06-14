@@ -11,8 +11,9 @@ namespace Entities.Concretes
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public double DailyPrice { get; set; }
+        public double dailyPrice { get; set; }
         public int BrandId { get; set; }
+
         public Brand Brand { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Business.Dtos.Request;
+using Business.Dtos.Response;
 using Entities.Concretes;
 using Microsoft.EntityFrameworkCore.Update.Internal;
 using System;
@@ -10,13 +11,18 @@ using System.Threading.Tasks;
 namespace Business.Abstracts
 {
     public interface IModelService{
-        List<Model> GetAll();
+        
+        List<GetModelResponse> GetAll();
 
-        List<Model> GetAll(string modelName);
+        List<GetModelResponse> GetAll(string modelName);
         Model GetById(int id);
 
         void Add(CreateModelRequest createModelRequest);
         void update(UpdateModelRequest updateModelRequest);
         void delete(DeleteModelRequest deleteModelRequest);
+
+        void Detele(DeleteModelRequest deleteModelRequest);
+
+        void Update(UpdateModelRequest updateModelRequest);
     }
 }
