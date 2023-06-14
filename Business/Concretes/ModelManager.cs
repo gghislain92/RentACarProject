@@ -19,13 +19,11 @@ namespace Business.Concretes
 
         private IModelDal _modelDal;
         ModelBusinessRules rules;
-        ModelBusinessRules1 rules1;
 
         public ModelManager(IModelDal modelDal)
         {
             _modelDal = modelDal;
             rules = new ModelBusinessRules(_modelDal);
-            rules1 = new ModelBusinessRules1(_modelDal);
         }
 
         public void Add(CreateModelRequest createModelRequest)
