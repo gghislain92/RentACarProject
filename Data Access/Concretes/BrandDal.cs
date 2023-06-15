@@ -21,14 +21,15 @@ namespace Data_Access.Concretes
             }
         }
 
-        public List<Brand> GetAllWithModel(string productName)
+        public List<Brand> GetAllWithModel(string modelName)
         {
             using (RentACarContext context = new RentACarContext())
             {
-                return context.Brands.Include(p => p.Models)
-                    .Where(p => p.Name.ToLower().Contains(productName.ToLower())).ToList();
+                return context.Brands.Include(b => b.Models)
+                    .Where(b => b.Name.ToLower().Contains(modelName.ToLower())).ToList();
             }
         }
+
 
     }
 }

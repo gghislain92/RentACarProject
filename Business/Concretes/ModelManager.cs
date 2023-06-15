@@ -16,7 +16,6 @@ namespace Business.Concretes
 {
     public class ModelManager : IModelService
     {
-
         private IModelDal _modelDal;
         ModelBusinessRules rules;
 

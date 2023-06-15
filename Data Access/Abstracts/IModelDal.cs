@@ -14,3 +14,4 @@ namespace Data_Access.Abstracts
         List<Model> GetAllWithBrand(string modelName);
     }
 }
+ 
